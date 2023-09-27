@@ -6,8 +6,8 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./book.db"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model BookStore {
@@ -44,3 +44,11 @@ model Book {
 
 
 // Create owner model here
+model Owner{
+  id Int @id @default(autoincrement())
+  name String 
+  email String @unique
+  password String 
+  created DateTime @default(now())
+  updated DateTime @default(now())
+}
